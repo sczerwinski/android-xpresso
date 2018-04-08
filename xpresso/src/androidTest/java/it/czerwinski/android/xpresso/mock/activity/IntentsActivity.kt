@@ -32,6 +32,6 @@ class IntentsActivity : AppCompatActivity() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        textView.text = "$resultCode | ${data?.getStringExtra("extra")}"
+        textView.text = "$resultCode|${data?.getStringExtra("extra").orEmpty()}"
     }
 }

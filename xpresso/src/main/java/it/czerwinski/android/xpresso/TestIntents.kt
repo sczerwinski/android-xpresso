@@ -1,8 +1,10 @@
 package it.czerwinski.android.xpresso
 
 import android.app.Activity
+import android.app.Instrumentation
 import android.content.Intent
 import android.support.test.espresso.intent.Intents
+import android.support.test.espresso.intent.OngoingStubbing
 import android.support.test.espresso.intent.matcher.IntentMatchers
 import junit.framework.AssertionFailedError
 import org.hamcrest.Matcher
@@ -31,3 +33,30 @@ inline fun <reified T : Activity> intended() =
  */
 inline fun <reified T : Activity> intended(vararg matchers: Matcher<Intent>) =
         Intents.intended(Matchers.allOf(IntentMatchers.hasComponent(T::class.java.name), *matchers))
+
+/**
+ * Sets a "Cancel" response for the Intent being stubbed.
+ */
+fun OngoingStubbing.respondWithCancel() {
+    respondWith(Activity.RESULT_CANCELED)
+}
+
+/**
+ * Sets a response for the Intent being stubbed.
+ *
+ * @param resultCode The result code.
+ * @param resultDataInit Function initializing the result data.
+ */
+fun OngoingStubbing.respondWith(resultCode: Int, resultDataInit: Intent.() -> Unit = {}) {
+    respondWith(resultCode, Intent().apply(resultDataInit))
+}
+
+/**
+ * Sets a response for the Intent being stubbed.
+ *
+ * @param resultCode The result code.
+ * @param resultData The result data.
+ */
+fun OngoingStubbing.respondWith(resultCode: Int, resultData: Intent) {
+    respondWith(Instrumentation.ActivityResult(resultCode, resultData))
+}
