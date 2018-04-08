@@ -1,3 +1,5 @@
+[ ![Download](https://api.bintray.com/packages/sczerwinski/android/xpresso/images/download.svg?version=0.1) ](https://bintray.com/sczerwinski/android/xpresso/0.1/link)
+
 # X-presso: Kotlin Extensions for Android Espresso 
 
 ## Key features
