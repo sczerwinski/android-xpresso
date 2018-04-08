@@ -25,12 +25,13 @@ class IntentsActivity : AppCompatActivity() {
         textView.text = intent.getStringExtra("extra")
 
         button.setOnClickListener {
-            startActivityForResult(Intent(), 1)
+            val intent = Intent(this, EmptyActivity::class.java)
+                    .putExtra("extra", "start")
+            startActivityForResult(intent, 1)
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
         textView.text = "$resultCode | ${data?.getStringExtra("extra")}"
     }
 }
