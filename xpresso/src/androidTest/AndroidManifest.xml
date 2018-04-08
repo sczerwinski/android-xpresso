@@ -8,6 +8,10 @@
             android:name="it.czerwinski.android.xpresso.mock.activity.EmptyActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
 
+        <activity
+            android:name="it.czerwinski.android.xpresso.mock.activity.IntentsActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+
     </application>
 
 </manifest>
