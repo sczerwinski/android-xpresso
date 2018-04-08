@@ -40,8 +40,6 @@ dependencies {
 
     implementation 'it.czerwinski:kotlin-util:0.1'
 
-    testImplementation "junit:junit:$junitVersion"
-
     androidTestImplementation 'com.android.support:appcompat-v7:27.1.1'
 }
 
