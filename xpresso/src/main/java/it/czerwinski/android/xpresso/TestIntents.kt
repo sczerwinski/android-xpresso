@@ -6,7 +6,6 @@ import android.content.Intent
 import android.support.test.espresso.intent.Intents
 import android.support.test.espresso.intent.OngoingStubbing
 import android.support.test.espresso.intent.matcher.IntentMatchers
-import junit.framework.AssertionFailedError
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers
 
@@ -15,7 +14,7 @@ import org.hamcrest.Matchers
  *
  * @param T Type of the class to which the Intent is expected to be targeted.
  *
- * @throws AssertionFailedError If the Intent was not targeted to [T].
+ * @throws AssertionError If the Intent was not targeted to [T].
  */
 inline fun <reified T : Activity> intended() =
         Intents.intended(IntentMatchers.hasComponent(T::class.java.name))
@@ -28,7 +27,7 @@ inline fun <reified T : Activity> intended() =
  *
  * @param matchers Matchers that are expected to match the Intent.
  *
- * @throws AssertionFailedError If the Intent was not targeted to [T]
+ * @throws AssertionError If the Intent was not targeted to [T]
  * or any of provided [matchers] does not match this Intent.
  */
 inline fun <reified T : Activity> intended(vararg matchers: Matcher<Intent>) =

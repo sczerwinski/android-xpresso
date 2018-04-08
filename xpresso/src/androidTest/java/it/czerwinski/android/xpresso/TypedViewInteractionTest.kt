@@ -12,7 +12,6 @@ import android.widget.EditText
 import android.widget.Spinner
 import it.czerwinski.android.xpresso.mock.activity.IntentsActivity
 import it.czerwinski.android.xpresso.test.R
-import junit.framework.AssertionFailedError
 import org.junit.Assert.assertTrue
 import org.junit.Assert.fail
 import org.junit.Rule
@@ -34,7 +33,7 @@ class TypedViewInteractionTest {
                 .check(matches(withId(R.id.button)))
     }
 
-    @Test(expected = AssertionFailedError::class)
+    @Test(expected = AssertionError::class)
     @Throws(Exception::class)
     fun checkShouldFailForViewAssertion() {
         on<Button>()
@@ -49,7 +48,7 @@ class TypedViewInteractionTest {
                 withText(R.string.intents_activity_button))
     }
 
-    @Test(expected = AssertionFailedError::class)
+    @Test(expected = AssertionError::class)
     @Throws(Exception::class)
     fun checkShouldFailForViewMatchers() {
         on<Button>().check(
@@ -71,7 +70,7 @@ class TypedViewInteractionTest {
                 .check { assertTrue(it.isFailure) }
     }
 
-    @Test(expected = AssertionFailedError::class)
+    @Test(expected = AssertionError::class)
     @Throws(Exception::class)
     fun checkShouldThrowExceptionWhenFunctionalAssertionFails() {
         on<Button>()

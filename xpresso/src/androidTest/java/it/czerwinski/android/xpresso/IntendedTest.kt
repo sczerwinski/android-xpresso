@@ -13,7 +13,6 @@ import android.support.test.runner.AndroidJUnit4
 import it.czerwinski.android.xpresso.mock.activity.EmptyActivity
 import it.czerwinski.android.xpresso.mock.activity.IntentsActivity
 import it.czerwinski.android.xpresso.test.R
-import junit.framework.AssertionFailedError
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -38,7 +37,7 @@ class IntendedTest {
         intended<EmptyActivity>()
     }
 
-    @Test(expected = AssertionFailedError::class)
+    @Test(expected = AssertionError::class)
     @Throws(Exception::class)
     fun intendedShouldFailWhenActivityNotMatching() {
         intending(anyIntent())
@@ -62,7 +61,7 @@ class IntendedTest {
         intended<EmptyActivity>(hasExtra("extra", "start"))
     }
 
-    @Test(expected = AssertionFailedError::class)
+    @Test(expected = AssertionError::class)
     @Throws(Exception::class)
     fun intendedShouldFailWhenIntentNotMatching() {
         intending(anyIntent())
