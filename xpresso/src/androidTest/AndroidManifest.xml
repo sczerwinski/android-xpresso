@@ -1,0 +1,13 @@
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="it.czerwinski.android.xpresso.test">
+
+    <application>
+
+        <activity
+            android:name="it.czerwinski.android.xpresso.mock.activity.EmptyActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+
+    </application>
+
+</manifest>
