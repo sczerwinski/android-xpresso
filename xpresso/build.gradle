@@ -36,6 +36,7 @@ dependencies {
 
     implementation 'com.android.support.test:runner:1.0.1'
     implementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    implementation 'com.android.support.test.espresso:espresso-intents:3.0.1'
 
     testImplementation "junit:junit:$junitVersion"
 
