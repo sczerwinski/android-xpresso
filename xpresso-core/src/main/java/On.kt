@@ -24,7 +24,7 @@ import org.hamcrest.Matcher
 /**
  * Creates a [TypedViewInteraction] for a given View of type [V].
  *
- * @param T Type of the view under test.
+ * @param V Type of the view under test.
  *
  * @return [TypedViewInteraction] for the given View.
  */
