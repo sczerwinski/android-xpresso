@@ -1,2 +1,3 @@
-include ':xpresso-core',
+include ':xpresso',
+        ':xpresso-core',
         ':xpresso-recyclerview'
