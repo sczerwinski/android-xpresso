@@ -22,13 +22,12 @@ import android.content.ComponentName
 import android.content.Intent
 import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ApplicationProvider
-import it.czerwinski.android.xpresso.test.TestActivity
 
 inline fun <reified T : Activity> launchTestActivity(): ActivityScenario<T> {
     val startActivityIntent = Intent.makeMainActivity(
         ComponentName(
             ApplicationProvider.getApplicationContext(),
-            TestActivity::class.java
+            T::class.java
         )
     )
     return ActivityScenario.launch(startActivityIntent)
