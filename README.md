@@ -1,10 +1,12 @@
 [![Build](https://github.com/sczerwinski/android-xpresso/workflows/Build/badge.svg)](https://github.com/sczerwinski/android-xpresso/actions?query=workflow%3ABuild)
+[![Release](https://github.com/sczerwinski/android-xpresso/workflows/Release/badge.svg)](https://github.com/sczerwinski/android-xpresso/actions?query=workflow%3A%22Release%22)
 [![Snapshot Release](https://github.com/sczerwinski/android-xpresso/workflows/Snapshot%20Release/badge.svg)](https://github.com/sczerwinski/android-xpresso/actions?query=workflow%3A%22Snapshot+Release%22)
 
 # Xpresso: Kotlin Extensions for Android Espresso
 
 ## Core
 
+[![Maven Central](https://img.shields.io/maven-central/v/it.czerwinski.android/xpresso-core.svg)](https://repo1.maven.org/maven2/it/czerwinski/android/xpresso-core/)
 [![Sonatype Nexus (Snapshots)](https://img.shields.io/nexus/s/it.czerwinski.android/xpresso-core?server=https%3A%2F%2Foss.sonatype.org)](https://oss.sonatype.org/content/repositories/snapshots/it/czerwinski/android/xpresso-core/)
 
 ### Build Configuration
@@ -80,6 +82,7 @@ bulkCheckFor<Button> {
 
 ## `RecyclerView`
 
+[![Maven Central](https://img.shields.io/maven-central/v/it.czerwinski.android/xpresso-recyclerview.svg)](https://repo1.maven.org/maven2/it/czerwinski/android/xpresso-recyclerview/)
 [![Sonatype Nexus (Snapshots)](https://img.shields.io/nexus/s/it.czerwinski.android/xpresso-recyclerview?server=https%3A%2F%2Foss.sonatype.org)](https://oss.sonatype.org/content/repositories/snapshots/it/czerwinski/android/xpresso-recyclerview/)
 
 ### Build Configuration
