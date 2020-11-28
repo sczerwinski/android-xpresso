@@ -1,1 +1,1 @@
-include ':xpresso'
+include ':xpresso-core'
