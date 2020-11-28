@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ Copyright 2020 Slawomir Czerwinski
   ~
@@ -15,4 +16,16 @@
   ~
   -->
 
-<manifest package="it.czerwinski.android.xpresso.aggregate" />
+<resources>
+
+    <string name="buttonShow">Show</string>
+    <string name="buttonHide">Hide</string>
+
+    <string name="text1">Hello</string>
+    <string name="text2">World</string>
+    <string name="text3">!!!</string>
+
+    <string name="textInvalid1">This text is not present</string>
+    <string name="textInvalid2">And neither is this one</string>
+
+</resources>

@@ -15,4 +15,10 @@
   ~
   -->
 
-<manifest package="it.czerwinski.android.xpresso.aggregate" />
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="it.czerwinski.android.xpresso.recyclerview">
+    <application android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
+        <activity android:name=".test.TestRecyclerViewActivity" />
+    </application>
+</manifest>

@@ -15,16 +15,18 @@
  *
  */
 
-apply from: '../common-android.gradle'
-
-dependencies {
-    api project(path: ':xpresso-core')
-    api project(path: ':xpresso-recyclerview')
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
-}
-
 apply plugin: 'maven-publish'
 apply plugin: 'signing'
+
+task sourcesJar(type: Jar) {
+    archiveClassifier.set('sources')
+    from android.sourceSets.main.java.srcDirs
+}
+
+task dokkaJar(type: Jar, dependsOn: project.dokkaJavadoc) {
+    archiveClassifier.set('javadoc')
+    from dokkaJavadoc
+}
 
 def withSigning = hasProperty('signing.keyId')
 def isSnapshot = libVersion.endsWith('SNAPSHOT')
@@ -38,6 +40,9 @@ afterEvaluate {
                 groupId = "$libGroupId"
                 artifactId = "${project.name}"
                 version = "$libVersion"
+
+                artifact(sourcesJar)
+                artifact(dokkaJar)
 
                 pom {
                     name = libName

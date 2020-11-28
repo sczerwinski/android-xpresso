@@ -1,56 +1,63 @@
-# X-presso: Kotlin Extensions for Android Espresso 
+[![Build](https://github.com/sczerwinski/android-xpresso/workflows/Build/badge.svg)](https://github.com/sczerwinski/android-xpresso/actions?query=workflow%3ABuild)
+[![Snapshot Release](https://github.com/sczerwinski/android-xpresso/workflows/Snapshot%20Release/badge.svg)](https://github.com/sczerwinski/android-xpresso/actions?query=workflow%3A%22Snapshot+Release%22)
 
-## Key features
+# Xpresso: Kotlin Extensions for Android Espresso
 
-### Test rules
+## Core
 
-Functions creating Activity test rules:
+[![Sonatype Nexus (Snapshots)](https://img.shields.io/nexus/s/it.czerwinski.android/xpresso-core?server=https%3A%2F%2Foss.sonatype.org)](https://oss.sonatype.org/content/repositories/snapshots/it/czerwinski/android/xpresso-core/)
 
-```kotlin
-@Rule
-@JvmField
-val rule = activityTestRule<MyActivity>(launchActivity = false)
+### Build Configuration
+
+```groovy
+dependencies {
+    androidTestImplementation 'it.czerwinski.android:xpresso-core:1.0'
+}
 ```
 
-And Intents test rules:
+### Examples
+
+#### Launching `ActivityScenario`
 
 ```kotlin
-@Rule
-@JvmField
-val rule = intentsTestRule<MyActivity>(launchActivity = false)
+@Test
+fun myTestMethod() {
+    val scenario = launchTestActivity<MyTestActivity>()
+    // […]
+}
 ```
 
-### Views assertions and actions
-
-Find views by type:
+#### Type-Aware View Interactions
 
 ```kotlin
-on<Button>(withText("OK"))
-        .check(isDisplayed(), isEnabled())
+on<TextView>(withText(R.string.hello_world))
+    .check(isDisplayed())
+
+on<Button>()
+    .check(isDisplayed(), isEnabled())
+    .perform(click())
 ```
 
-Perform custom checks:
-
+Custom checks:
 ```kotlin
 on<CheckBox>(withId(R.id.terms_and_conditions))
-        .check {
-            when (it) {
-                is Success -> assertFalse(it.value.isChecked)
-                is Failure -> assertTrue(it.exception is NoMatchingViewException)
-            }
+    .check {
+        when (it) {
+            is Success -> assertFalse(it.value.isChecked)
+            is Failure -> assertTrue(it.exception is NoMatchingViewException)
         }
+    }
 ```
 
 Perform custom actions:
-
 ```kotlin
 on<CalendarView>()
-        .perform {
-            date = Date().time
-        }
+    .perform(description = "set date") {
+        date = Date().time
+    }
 ```
 
-### Bulk checks
+#### Bulk Checks
 
 Perform check on all views in a bulk check:
 
@@ -71,34 +78,34 @@ bulkCheckFor<Button> {
 }.any(isEnabled())
 ```
 
-### Intents
+## `RecyclerView`
 
-Mock activity results easily:
+[![Sonatype Nexus (Snapshots)](https://img.shields.io/nexus/s/it.czerwinski.android/xpresso-recyclerview?server=https%3A%2F%2Foss.sonatype.org)](https://oss.sonatype.org/content/repositories/snapshots/it/czerwinski/android/xpresso-recyclerview/)
 
-```kotlin
-intending(anyIntent())
-        .respondWith(Activity.RESULT_OK) {
-            putExtra("response", "Hello, World!")
-        }
-```
-
-Verify intents sent by the application:
-
-```kotlin
-intended<MyActivity>(hasExtra("number", 256))
-```
-
-## Build configuration
+### Build Configuration
 
 ```groovy
-// Espresso:
-androidTestImplementation 'com.android.support.test:runner:1.0.1'
-androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-androidTestImplementation 'com.android.support.test.espresso:espresso-intents:3.0.1'
+dependencies {
+    androidTestImplementation 'it.czerwinski.android:xpresso-recyclerview:1.0'
+}
+```
 
-// Kotlin utilities (Try):
-androidTestImplementation 'it.czerwinski:kotlin-util:0.1'
+### Examples
 
-// X-presso:
-androidTestImplementation 'it.czerwinski.android:xpresso:0.1'
+#### Interactions With Items Of `RecyclerView`
+
+```kotlin
+onRecyclerView(withId(R.id.list))
+    .check(isDisplayed())
+    .onItem<MyAdapter.ViewHolder>(position = 0) {
+        // Interaction with ViewHolder.itemView
+        check(hasDescendant(withText("Actions")))
+        perform(click())
+    }
+    .onItem<MyAdapter.ViewHolder>(position = 1) {
+        // Interaction with a descendant of ViewHolder.itemView:
+        on<Button>(withText("Actions"))
+            .check(isDisplayed())
+            .perform(click())
+    }
 ```

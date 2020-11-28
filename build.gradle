@@ -1,24 +1,34 @@
-group groupId
+group libGroupId
 version libVersion
 description = libDescription
 
 buildscript {
+
     repositories {
         google()
+        mavenCentral()
         jcenter()
     }
+
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.0'
+        classpath 'com.android.tools.build:gradle:4.1.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
-        classpath "org.jetbrains.dokka:dokka-android-gradle-plugin:$dokkaVersion"
+        classpath 'org.jetbrains.dokka:dokka-gradle-plugin:1.4.10'
+        classpath 'io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.14.2'
     }
+
 }
 
 allprojects {
+    project.group = libGroupId
+    project.version = libVersion
+
     repositories {
         google()
+        mavenCentral()
         jcenter()
     }
+
 }
 
 task clean(type: Delete) {
