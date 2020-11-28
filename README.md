@@ -1,10 +1,11 @@
-[![Build](https://github.com/sczerwinski/android-xpresso/workflows/Build/badge.svg)](https://github.com/sczerwinski/android-xpresso/actions?query=workflow%3ABuild)  
+[![Build](https://github.com/sczerwinski/android-xpresso/workflows/Build/badge.svg)](https://github.com/sczerwinski/android-xpresso/actions?query=workflow%3ABuild)
 [![Snapshot Release](https://github.com/sczerwinski/android-xpresso/workflows/Snapshot%20Release/badge.svg)](https://github.com/sczerwinski/android-xpresso/actions?query=workflow%3A%22Snapshot+Release%22)
-[![Sonatype Nexus (Snapshots)](https://img.shields.io/nexus/s/it.czerwinski.android/xpresso-core?server=https%3A%2F%2Foss.sonatype.org)](https://oss.sonatype.org/content/repositories/snapshots/it/czerwinski/android/xpresso-core/)
 
 # Xpresso: Kotlin Extensions for Android Espresso
 
 ## Core
+
+[![Sonatype Nexus (Snapshots)](https://img.shields.io/nexus/s/it.czerwinski.android/xpresso-core?server=https%3A%2F%2Foss.sonatype.org)](https://oss.sonatype.org/content/repositories/snapshots/it/czerwinski/android/xpresso-core/)
 
 ### Build Configuration
 
@@ -75,4 +76,36 @@ bulkCheckFor<Button> {
     onView(withText("OK"))
     onView(withText("Cancel"))
 }.any(isEnabled())
+```
+
+## `RecyclerView`
+
+[![Sonatype Nexus (Snapshots)](https://img.shields.io/nexus/s/it.czerwinski.android/xpresso-recyclerview?server=https%3A%2F%2Foss.sonatype.org)](https://oss.sonatype.org/content/repositories/snapshots/it/czerwinski/android/xpresso-recyclerview/)
+
+### Build Configuration
+
+```groovy
+dependencies {
+    androidTestImplementation 'it.czerwinski.android:xpresso-recyclerview:1.0'
+}
+```
+
+### Examples
+
+#### Interactions With Items Of `RecyclerView`
+
+```kotlin
+onRecyclerView(withId(R.id.list))
+    .check(isDisplayed())
+    .onItem<MyAdapter.ViewHolder>(position = 0) {
+        // Interaction with ViewHolder.itemView
+        check(hasDescendant(withText("Actions")))
+        perform(click())
+    }
+    .onItem<MyAdapter.ViewHolder>(position = 1) {
+        // Interaction with a descendant of ViewHolder.itemView:
+        on<Button>(withText("Actions"))
+            .check(isDisplayed())
+            .perform(click())
+    }
 ```
